@@ -16,19 +16,47 @@ class Person:
             print("Sorry person name can't have number")
             return
         else:
-            self.name = new_name
+            self.__name = new_name
     def __has_any_number(self, string):
         return "0" in string
+    def get_name(self):
+        return self.__name
+class Student(Person):
+    def __init__(self,person_name, year_of_birth,email_id, student_id):
+        super().__init__(person_name, year_of_birth)
+        self.id = student_id
+        self.email_id = email_id
+    def return_details(self):
+        return f"Name:{self.get_name()} Email: {self.email_id}"
+    def __str__(self):
+        return self.return_details()
 
-a_person = Person("Giyan", "asd", "123")
+    # def __repr__(self):
+    #     return "Representation"
+# person = Student("Giyan", 1000, "testing@gmail.com", "123123")
+# print(person.return_details())
+# print(person)
+# person.set_name("Nabita")
+# print(person.return_details())
+class Teacher(Person):
+    def __init__(self, person_name, year_of_birth, department):
+        super().__init__(person_name, year_of_birth)
+        self.dept = department
 
 
-person_list = [Person("Giyan", 1990), Person("Nobita", 1994, 22), Person("Giyan", 1943), Person("Giyan", 1988)]
+new_person_list = [
+    Person("Zukernine", 1990),
+    Student("S", 2000,"testing@gmail.com","12323"),
+    Teacher("Teachers", 1990,  "CSE")
+]
+for p in new_person_list:
+    print(p.return_details())
 
-# print(person_list)
 
-for person in person_list:
-    if person.get_year_of_birth() >= 1990:
-        print(person.return_details())
 
-# print(b_person.get_name())
+class PlainClass:
+    pass
+abc = PlainClass()
+abc.age = 30
+abc.name = "Movie"
+print(abc.age)
